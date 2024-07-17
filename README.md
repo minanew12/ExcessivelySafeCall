@@ -17,15 +17,7 @@ paid. This means that when using a standard solidity call, the callee can
 paid _by the caller_ and _in the caller's context_, it can cause the caller to
 run out of gas and halt execution.
 
-To prevent returnbombing, we provide `excessivelySafeCall` and
-`excessivelySafeStaticCall`. These behave similarly to solidity's low-level
-calls, however, they allow the user to specify a maximum number of bytes to be
-copied to local memory. E.g. a user desiring a single return value should
-specify a `_maxCopy` of 32 bytes. Refusing to copy large blobs to local memory
-effectively prevents the callee from triggering local OOG reversion. We _also_ recommend careful consideration of the gas amount passed to untrusted
-callees.
-
-Consider the following contracts:
+onsider the following contracts:
 
 ```solidity
 contract BadGuy {
